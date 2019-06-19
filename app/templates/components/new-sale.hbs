@@ -1,0 +1,45 @@
+{{#if addNewSale}}
+<h3>Venta Nueva</h3>
+{{fbid}}
+  <div>
+    <form>        
+      <div class="form-group">        
+        <label for="name">Nombre</label>
+        {{input value=name id="name"}}
+      </div>
+      <div class="form-group">        
+        <label for="dateIn">Inicio</label>
+        {{input type="date" value=dateIn id="dateIn"}}
+      </div>
+      <div class="form-group">        
+        <label for="dateOut">Termino</label>
+        {{input type="date" value=dateOut id="dateOut"}}
+      </div>      
+      <div class="form-group">
+        <label for="volume">Volumen</label>
+        {{input value=volume id="volume"}}        
+      </div>           
+      <div class="form-group">
+          <label>Unidad Comercial</label>                                     
+          <select onchange={{action "chooseUCommerce" value="target.value"}}>
+              {{#each uCommerce as |item|}}
+                  <option value={{item}}>{{item}}</option>
+              {{/each}}
+          </select> 
+      </div>
+      <div class="form-group">
+        <label for="price">Precio Unitario</label>
+        {{input value=price id="price"}}        
+      </div>
+      <div class="form-group">
+        <label for="detail">Detalles</label>
+        {{input type="textarea" value=detail id="detail"}}        
+      </div>    
+      <button {{action 'saveSale'}} class="btn btn-warning btn-sm">Guardar Venta</button>
+    </form>
+  </div>             
+{{else}}  
+  <button {{action 'saleFormShow'}} class="btn btn-primary btn-sm">Agregar Venta</button>
+{{/if}}
+
+

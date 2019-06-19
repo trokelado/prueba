@@ -1,0 +1,55 @@
+{{#if addNewLine}}
+<h3>Línea Nueva</h3>
+  <div>
+    <form>
+      <div class="form-group">        
+        <label for="name">Nombre</label>
+        {{input value=name id="name"}}
+      </div>
+      <div class="form-group">
+        <label for="isActive">isActive</label>
+        {{input type="checkbox" checked=isActive}} {{isActive}}
+      </div>
+      <div class="form-group">
+        <label for="reference">Referencia</label>
+        {{input value=reference id="reference"}}        
+      </div>      
+      <div class="form-group">
+        <label>Color</label>
+        {{!--input value=color id="color"--}}        
+        <select onchange={{action "chooseColor" value="target.value"}}>
+          {{#each Colors as |item|}}
+            <option value={{item}}>{{item}}</option>
+          {{/each}}
+        </select> 
+    </div>
+      <div class="form-group">
+        <label for="long">Longitud</label>
+        {{input value=long id="long"}}        
+      </div>      
+      <div class="form-group">
+        <label>Unidad de longitud</label>
+        {{!--input value=uPerimeter id="uPerimeter"--}}        
+        <select onchange={{action "chooseULongitude" value="target.value"}}>
+          {{#each ULongitudes as |item|}}
+            <option value={{item}}>{{item}}</option>
+          {{/each}}
+        </select> 
+      </div>
+      <div class="form-group">
+        <label for="spRef">Referencia espacial</label>
+        {{input value=spRef id="spRef"}}        
+      </div>      
+      <div class="form-group">
+        <label for="json">Coordenadas</label>
+        {{input value=json id="json"}}        
+      </div>    
+      <button {{action 'saveLine'}} class="btn btn-warning btn-sm">Guardar Línea</button>
+    </form>
+  </div>             
+{{else}}  
+  <button {{action 'lineFormShow'}} class="btn btn-primary btn-sm">Agregar Línea</button>
+{{/if}}
+
+
+

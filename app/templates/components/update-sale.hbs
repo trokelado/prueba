@@ -1,0 +1,149 @@
+{{#if updateSaleForm}}
+  <h4>Editar Venta</h4>
+  <div>
+    <form>
+        {{#if saleIsFreeze}}
+            <div class="form-group">
+                <label>Nombre</label>
+                {{input type="text" class="form-control" value=sale.name disabled=true}}
+            </div>
+            <div class="form-group">
+                <label>Inicio</label>
+                {{input type="date" class="form-control" value=sale.dateIn disabled=true}}
+            </div>
+            <div class="form-group">
+                <label>Termino</label>
+                {{input type="date" class="form-control" value=sale.dateOut disabled=true}}
+            </div>
+            <div class="form-group">
+                <label>Estatus</label>
+                {{input type="text" class="form-control" value=sale.status disabled=true}}                                    
+            </div>
+                        <div class="form-group">
+                <label>Volumen</label>
+                {{input type="text" class="form-control" value=sale.volume disabled=true}}
+            </div>
+            <div class="form-group">
+                <label>Saldo</label>
+                {{input type="text" class="form-control" value=sale.balance disabled=true}}
+            </div>
+            <div class="form-group">
+                <label>Unidad</label>
+                {{input type="text" class="form-control" value=sale.unit disabled=true}}
+            </div>
+            <div class="form-group">
+                <label>Precio unitario</label>
+                {{input type="text" class="form-control" value=sale.price disabled=true}}
+            </div>
+            <div class="form-group">
+                <label>Detalles</label>
+                {{input type="textarea" class="form-control" value=sale.detail disabled=true}}
+            </div>
+        {{else}}        
+            {{#if balanceIsFull}}
+                <div class="form-group">
+                    <label>Nombre</label>
+                    {{input type="text" class="form-control" value=sale.name}}
+                </div>
+                <div class="form-group">
+                    <label>Inicio</label>
+                    {{input type="date" class="form-control" value=sale.dateIn}}
+                </div>
+                <div class="form-group">
+                    <label>Termino</label>
+                    {{input type="date" class="form-control" value=sale.dateOut}}
+                </div>                            
+                 <div class="form-group">
+                    <label>Estatus</label>
+                    {{!--input type="text" class="form-control" value=buy.status--}}
+                    <!--select onchange={{action "setStatusSelection" value="target.value"}}>
+                        <option value="Activa">Activa</option>
+                        <option value="Cancelada">Cancelada</option>
+                        <option value="Cerrada">Cerrada</option>                         
+                        </select-->        
+                    <select onchange={{action "chooseStatus" value="target.value"}}>
+                        {{#each statues as |item|}}
+                            <option value={{item}} selected={{is-equal sale.status item}}>{{item}}</option>
+                        {{/each}}
+                    </select> 
+                </div>
+                <div class="form-group">
+                    <label>Volumen</label>
+                    {{input type="text" class="form-control" value=sale.volume}}
+                </div>
+                <div class="form-group">
+                    <label>Saldo</label>
+                    {{input type="text" class="form-control" value=sale.balance disabled=true}}
+                </div>                
+                <div class="form-group">
+                    <label>Unidad</label>
+                    {{!--input type="text" class="form-control" value=sale.unit--}}                           
+                    <select onchange={{action "chooseUCommerce" value="target.value"}}>
+                        {{#each uCommerce as |item|}}
+                            <option value={{item}} selected={{is-equal sale.unit item}}>{{item}}</option>
+                        {{/each}}
+                    </select> 
+                </div>
+                <div class="form-group">
+                    <label>Precio unitario</label>
+                    {{input type="text" class="form-control" value=sale.price}}
+                </div>
+                <div class="form-group">
+                    <label>Detalles</label>
+                    {{input type="textarea" class="form-control" value=sale.detail}}
+                </div>                
+            {{else}}
+                <div class="form-group">
+                    <label>Nombre</label>
+                    {{input type="text" class="form-control" value=sale.name disabled=true}}
+                </div>
+                <div class="form-group">
+                    <label>Inicio</label>
+                    {{input type="date" class="form-control" value=sale.dateIn disabled=true}}
+                </div>
+                <div class="form-group">
+                    <label>Termino</label>
+                    {{input type="date" class="form-control" value=sale.dateOut disabled=true}}
+                </div>                                
+                <div class="form-group">
+                    <label>Estatus</label>
+                    {{!--input type="text" class="form-control" value=buy.status--}}
+                    <!--select onchange={{action "setStatusSelection" value="target.value"}}>
+                        <option value="Activa">Activa</option>
+                        <option value="Cancelada">Cancelada</option>
+                        <option value="Cerrada">Cerrada</option>                         
+                        </select-->        
+                    <select onchange={{action "chooseStatus" value="target.value"}}>
+                        {{#each statues as |item|}}
+                            <option value={{item}} selected={{is-equal sale.status item}}>{{item}}</option>
+                        {{/each}}
+                    </select> 
+                </div>                                        
+                <div class="form-group">
+                    <label>Volumen</label>
+                    {{input type="text" class="form-control" value=sale.volume disabled=true}}
+                </div>
+                <div class="form-group">
+                    <label>Saldo</label>
+                    {{input type="text" class="form-control" value=sale.balance disabled=true}}
+                </div>
+                <div class="form-group">
+                    <label>Unidad</label>
+                    {{input type="text" class="form-control" value=sale.unit disabled=true}}
+                </div>
+                <div class="form-group">
+                    <label>Precio unitario</label>
+                    {{input type="text" class="form-control" value=sale.price disabled=true}}
+                </div>
+                <div class="form-group">
+                    <label>Detalles</label>
+                    {{input type="textarea" class="form-control" value=sale.detail disabled=true}}
+                </div>                
+            {{/if}}
+        {{/if}}
+        <button {{action 'updateSale' sale}} class="btn btn-warning btn-sm">Guardar</button>
+    </form>
+  </div>
+{{else}}
+  <button {{action 'updateSaleForm'}} class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
+{{/if}}

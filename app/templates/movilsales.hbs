@@ -1,0 +1,52 @@
+<h4>Grupo {{data.mobil.feature.name}} Componente: {{data.mobil.name}}<img src={{data.mobil.imagePath}} alt="Logo" width="10%" height="10%"/></h4>
+<!--h3>Grupo {{model.feature.name}} Componente: {{model.name}}<img src={{model.imagePath}} alt="Logo" width="10%" height="10%"/></h3-->
+{{!--#power-select                                    
+    searchEnabled=false
+    placeholder="Usuario"
+    selected=selectedFbid
+    options=sortedFbid
+    onchange=(action "chooseFbid")
+    as |item|}}
+    {{item.name}}
+{{/power-select--}}
+{{#each filteredToys as |toy|}}
+    <h4><li>{{toy.rol}} : {{toy.name}}</li></h4>
+{{/each}}
+
+{{!--#if isToySelected}}
+    {{#each filteredToys as |toy|}}
+        <h4><li>{{toy.rol}} : {{toy.name}}</li></h4>
+    {{/each--}}
+    {{!--   }}
+    por vendedor
+    {{#each filteredToySales as |venta|}}
+        <h4><li>{{venta.id}} : {{venta.name}}</li></h4>
+    {{/each}}
+    por componente
+    {{#each filteredMobilSales as |mventa|}}
+        <h4><li>{{mventa.id}} : {{mventa.name}}</li></h4>
+    {{/each}}
+    por vendedor y componente
+    {{#each filteredSales as |sale|}}
+        <h4><li>{{sale.id}} : {{sale.name}}</li></h4>
+    {{/each}}
+    {{   --}}
+
+    {{!--#if showPartialSales}}    
+        {{new-sale fbid=fbid saveSale="saveSale" mobil=data.mobil}}
+        {{mobil-sale-detail filteredSales=filteredSales rol=rol fbid=fbid updateSale="updateSale" destroySale="destroySale" updateBuy="updateBuy"}}
+    {{else}}  
+        {{mobil-sale-detail filteredSales=filteredSales rol=rol fbid=fbid saveBuy="saveBuy" updateBuy="updateBuy" destroyBuy="destroyBuy"}}
+    {{/if--}}
+{{!--/if--}}
+
+{{#if showCommerce}}
+    {{#if showPartialSales}}    
+        {{new-sale fbid=fbid saveSale="saveSale" mobil=data.mobil}}
+        {{mobil-sale-detail filteredSales=filteredSales rol=rol fbid=uid updateSale="updateSale" destroySale="destroySale" updateBuy="updateBuy"}}
+    {{else}}     
+        {{mobil-sale-detail filteredSales=filteredSales rol=rol fbid=uid saveBuy="saveBuy" updateBuy="updateBuy" destroyBuy="destroyBuy"}}
+    {{/if}}
+{{else}}  
+    Sus privilegios no le permiten visualizar la información comercial. consulte al administrador !
+{{/if}}

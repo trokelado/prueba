@@ -1,0 +1,19 @@
+{{#if addNewTrackLink}}
+<h3>Insertar trayectoria</h3>
+  <div>
+    <form>            
+      <div class="form-group">
+        <label>Trayectoria</label>                
+        <select onchange={{action "chooseTrackLink" value="target.value"}}>
+          {{#each sortedLinks as |item|}}
+            <option value={{item}}>{{item.name}} {{item.reference}}</option>
+          {{/each}}
+        </select> 
+    </div>         
+      <button {{action 'saveTrackLink'}} class="btn btn-warning btn-sm">Guardar Línea</button>
+    </form>
+  </div>             
+{{else}}  
+  <button {{action 'tracklinkFormShow'}} class="btn btn-primary btn-sm">Agregar Línea</button>
+{{/if}}
+

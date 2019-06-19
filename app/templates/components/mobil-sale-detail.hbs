@@ -1,0 +1,5 @@
+<h3>Ventas</h3>  
+{{#each filteredSales as |sale|}}        
+  {{sale-tile sale=sale rol=rol fbid=fbid updateSale="updateSale" destroySale="destroySale" saveBuy="saveBuy" updateBuy="updateBuy" destroyBuy="destroyBuy"}}    
+{{/each}}
+  

@@ -1,0 +1,18 @@
+{{#if BuyerIsOwner}}
+    <div class='col-md-8'>        
+        {{buy.toy.name}} {{buy.name}} {{buy.dateIn}} Estatus: <strong>{{buy.status}}</strong> Volúmen: {{buy.volume}} Importe: {{buy.total}}    
+    </div>
+    <div class='col-md-4'>            
+        <p>{{update-buy buy=buy rol=rol fbid=fbid updateBuy="updateBuy"}}</p>
+        <!--p><button {{action 'delete' buy}} class="btn btn-danger btn-sm">Borrar Compra</button></p-->
+    </div>     
+{{/if}}            
+{{#if rolIsVendedor}}
+        <div class='col-md-8'>
+        {{buy.toy.name}} {{buy.name}} {{buy.dateIn}} Estatus: <strong>{{buy.status}}</strong> Volúmen: {{buy.volume}} Importe: {{buy.total}}    
+    </div>
+    <div class='col-md-4'>            
+        <p>{{update-buy buy=buy rol=rol fbid=fbid updateBuy="updateBuy"}}</p>        
+    </div>     
+{{/if}}						    
+  

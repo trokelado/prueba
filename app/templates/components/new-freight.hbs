@@ -1,0 +1,20 @@
+{{#if addNewFreight}}
+ {{shipment.name}}
+<h3>Ruta Nueva</h3>
+  <div>
+    <form>
+      <div class="form-group">
+        <label>Ruta</label>             
+        <select onchange={{action "chooseTrack" value="target.value"}}>
+          {{#each tracks as |item|}}
+            <option value={{item}}>{{item.name}}</option>
+          {{/each}}
+        </select> 
+      </div>    
+      <button {{action 'saveFreight'}} class="btn btn-warning btn-sm">Guardar Línea</button>
+    </form>
+  </div>             
+{{else}}  
+  <button {{action 'freightFormShow'}} class="btn btn-primary btn-sm">Agregar Línea</button>
+{{/if}}
+

@@ -1,0 +1,14 @@
+  <button {{action 'delete' polygon}} class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>
+  <p>{{update-polygon polygon=polygon color=polygon.color uArea=polygon.uArea uPerimeter=polygon.uPerimeter updatePolygon="updatePolygon"}}</p>
+<!--
+    para tener documentos por poligono (No Utilizada)
+<div class='col-md-8'>
+<h3>Documentos</h3>
+{{new-doc polygon=polygon saveDoc="saveDoc"}}
+<ul>
+  {{#each polygon.docs as |doc|}}
+    {{doc-tile doc=doc updateDoc="updateDoc" destroyDoc="destroyDoc"}}    
+  {{/each}}
+</ul>
+</div>
+-->

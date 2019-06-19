@@ -1,0 +1,29 @@
+<h3>Rutas</h3>
+    {{new-track track=model.track saveTrack="saveTrack"}}
+    <ul>
+      {{#each sortedTracks as |track|}}
+          {{track-detail track=track}}               
+      {{/each}} 
+    </ul>      
+    <!--table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Activo</th>
+        <th>Referencia</th>
+        <th>Tipo</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+    {{#each sortedTracks as |track|}}
+      <tr>
+        <th>{{track.name}}</th>
+        <td>{{track.isActive}}</td>
+        <td>{{track.reference}}</td>
+        <td>{{track.type}}</td>
+        {{track-tile track=track type=track.type uLong=track.uLong updateTrack="updateTrack" destroyTrack="destroyTrack"}}    
+      </tr>
+    {{/each}}
+    </tbody>
+  </table-->     

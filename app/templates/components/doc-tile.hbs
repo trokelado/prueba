@@ -1,0 +1,17 @@
+<div class='col-md-6'>
+    {{doc.name}} Tipo: {{doc.format}}
+</div>    
+<div class='col-md-6'>
+    <p><button {{action 'delete' doc}} class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button></p>
+    <p>{{update-doc doc=doc format= doc.format updateDoc="updateDoc"}}</p>
+						
+    {{#if isImageShowing}}
+        {{#if docIsImage}}
+            <p><img src=<img src={{doc.imagePath}}  alt="path" {{action 'imageHide'}}></p>
+        {{else}}    
+            <p><object data={{doc.imagePath}} type='application/pdf' {{action 'imageHide'}}/></p>
+        {{/if}}
+    {{else}}
+        <button {{action 'imageShow' doc.imagePath}} class="btn btn-info btn-xs"><span class="glyphicon glyphicon-picture"></span></button>
+    {{/if}}
+</div>  				

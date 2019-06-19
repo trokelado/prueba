@@ -1,0 +1,6 @@
+<h3>Proyectos</h3>
+<ul>
+  {{#each sortedToyProjects as |project|}}
+    {{toyproject-tile project=project updateToyProject="updateToyProject" destroyToyProject="destroyToyProject"}}   
+  {{/each}}
+</ul>

@@ -1,0 +1,10 @@
+<h3>Proyecto</h3>
+{{project.name}}
+
+<h3>Embarques</h3>
+    {{new-shipment shipment=model.shipment saveShipment="saveShipment"}}
+    <ul>
+      {{#each sortedShipments as |shipment|}}
+          {{shipment-detail shipment=shipment}}               
+      {{/each}} 
+    </ul>

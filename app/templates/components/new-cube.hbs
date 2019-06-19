@@ -1,0 +1,61 @@
+{{#if addNewCube}}
+<h3>Rectángulo Nuevo</h3>
+  <div>
+    <form>
+      <div class="form-group">        
+        <label for="name">Nombre</label>
+        {{input value=name id="name"}}
+      </div>
+      <div class="form-group">
+        <label for="isActive">isActive</label>
+        {{input type="checkbox" checked=isActive}} {{isActive}}
+      </div>
+      <div class="form-group">
+        <label for="reference">Referencia</label>
+        {{input value=reference id="reference"}}        
+      </div>     
+      <div class="form-group">
+        <label>Color</label>
+        {{!--input value=color id="color"--}}        
+        <select onchange={{action "chooseColor" value="target.value"}}>
+          {{#each Colors as |item|}}
+            <option value={{item}}>{{item}}</option>
+          {{/each}}
+        </select> 
+      </div>
+      <div class="form-group">
+        <label for="area">Area</label>
+        {{input value=area id="area"}}        
+      </div>
+      <div class="form-group">
+        <label for="perimeter">Perimetro</label>
+        {{input value=perimeter id="perimeter"}}        
+      </div>      
+      <div class="form-group">
+        <label>Unidad del Area</label>
+        {{!--input value=uArea id="uArea"--}}        
+        <select onchange={{action "chooseUArea" value="target.value"}}>
+          {{#each UAreas as |item|}}
+            <option value={{item}}>{{item}}</option>
+          {{/each}}
+        </select> 
+      </div>              
+      <div class="form-group">
+        <label>Unidad del Perímetro</label>
+        {{!--input value=uPerimeter id="uPerimeter"--}}        
+        <select onchange={{action "chooseULongitude" value="target.value"}}>
+          {{#each ULongitudes as |item|}}
+            <option value={{item}}>{{item}}</option>
+          {{/each}}
+        </select> 
+      </div>
+      <div class="form-group">
+        <label for="json">Coordenadas</label>
+        {{input value=json id="json"}}        
+      </div>    
+      <button {{action 'saveCube'}} class="btn btn-warning btn-sm">Guardar</button>
+    </form>
+  </div>             
+{{else}}  
+  <button {{action 'cubeFormShow'}} class="btn btn-primary btn-sm">Agregar Rectángulo</button>
+{{/if}}

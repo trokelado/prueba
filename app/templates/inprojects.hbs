@@ -1,0 +1,23 @@
+<h3> Proyecto </h3>
+{{#each filteredToys as |toy|}}
+    <h4><li>{{toy.rol}} : {{toy.name}}</li></h4>
+{{/each}}
+
+{{#if showMoney}}
+  <ul>
+    {{#each sortedProjects as |project|}}
+      {{project-tile project=project}}
+    {{/each}}
+  </ul>
+  {{!--solo para multi proyectos--}}
+    {{new-project saveProject2="saveProject3"}}
+    <div>
+        <form>                    
+            <button {{action 'goToParticipants'}} class="btn btn-primary">Participantes</button>
+            <button {{action 'goToRols'}} class="btn btn-primary">Roles</button>            
+        </form>
+    </div>
+{{else}}  
+    Sus privilegios no le permiten visualizar esta información. consulte al administrador !
+{{/if}}
+

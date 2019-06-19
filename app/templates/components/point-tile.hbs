@@ -1,0 +1,16 @@
+<div class='col-md-2'>  
+    <h3>{{point.name}}</h3>  
+</div>
+<div class='col-md-2'>
+  <button {{action 'delete' point}} class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>
+  <p>{{update-point point=point updatePoint="updatePoint"}}</p>
+</div>
+<div class='col-md-8'>
+<h3>Documentos</h3>
+{{new-doc point=point saveDoc="saveDoc"}}
+<ul>
+  {{#each point.docs as |doc|}}
+    {{doc-tile doc=doc updateDoc="updateDoc" destroyDoc="destroyDoc"}}    
+  {{/each}}
+</ul>
+</div>

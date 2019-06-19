@@ -1,0 +1,66 @@
+<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-1 col-md-6 col-md-offset-0">
+  {{esri-contact selectedBasemap=selectedBasemap}}   
+</div>
+<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-1 col-md-5 col-md-offset-0">
+  <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-1 col-md-4 col-md-offset-0">
+        {{#power-select
+            id=chooseBasemap              
+            matchTriggerWidth=matchTriggerWidth                             
+            searchEnabled=false
+            placeholder="Mapa tipo"
+            selected=selectedBasemap
+            options=sortedBasemaps
+            onchange=(action "chooseBasemap")
+            as |basemap|}}
+            {{basemap.name}}
+        {{/power-select}}
+      </div>
+      <br>
+    <div class="form-horizontal form-group form-group-lg row">      
+      <h3>Contacto</h3>      
+      <p>Calle Chiapas #313 Col. Unidad Nacional</p>
+      <p>Ciudad Madero Tamaulipas C.P. 89410</p> 
+      <p>Tel: (833) 274 0345  Cel: (938) 142 1026</p>            
+      <br>                    
+      {{#if responseMessage}}
+      <!--div class="alert alert-success">{{responseMessage}}</div-->
+        <div class="alert alert-success"> 
+          <h4>Gracias! Su mensaje ha sido enviado.</h4> 
+          <p>a: {{model.contact.email}}</p> 
+          <p>Mensaje: {{model.contact.message}}</p> 
+          <p>Referencia ID: {{model.contact.id}}</p> 
+        </div>
+      {{else}}
+        <p><strong>Envia</strong> tus comentarios ó preguntas !</p>                   
+        <div class="form-group has-feedback {{if model.contact.isValid 'has-success'}}">               
+          {{input type="email" class="form-control" placeholder="Tu dirección Email." value=model.contact.email autofocus="autofocus"}} 
+          {{#if model.contact.isValid}}<span class="glyphicon glyphicon-ok form-control-feedback"></span>{{/if}} 
+        </div>            
+        <div class="form-group has-feedback {{if model.contact.isMessage 'has-success'}}">              
+          {{textarea class="form-control" placeholder="Tu mensaje. (Al menos 20 caracteres.)" rows="3" value=model.contact.message}} 
+          {{#if model.contact.isMessage}}<span class="glyphicon glyphicon-ok form-control-feedback"></span>{{/if}} 
+        </div>            
+        <button class="btn btn-primary btn-lg btn-block" {{action 'saveMessage' model.contact}} disabled={{model.contact.isDisabled}}>Enviar</button>          
+      {{/if}}
+    </div>
+</div>
+
+<!-- version anterior
+<div>
+  <div class="form-horizontal form-group form-group-lg row">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-1 col-md-5 col-md-offset-2">      
+      {{input type="email" value=email class="form-control" placeholder="Tu dirección Email." autofocus="autofocus"}}    
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-1 col-md-5 col-md-offset-2">
+      {{textarea value=message class="form-control" placeholder="Tu mensaje." rows="7"}}            
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-1 col-md-5 col-md-offset-2">                
+        <button class="btn btn-primary btn-lg btn-block" disabled={{isDisabled}} {{action 'saveMessage'}}>Enviar</button>
+    </div>
+  </div>
+    {{#if responseMessage}}
+     <div class="alert alert-success">{{responseMessage}}</div>
+    {{/if}}
+
+  <br/><br/>
+</div-->

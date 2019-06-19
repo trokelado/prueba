@@ -1,0 +1,9 @@
+<!-- solo para multiproyectos -->
+<!--button {{action 'delete' project}} class="btn btn-danger">Borrar Proyecto</button-->
+<br>
+<h2>Grupos</h2>
+<ul>
+  {{#each sortedFeatures as |feature|}}
+    {{feature-tile feature=feature}}    
+  {{/each}}
+</ul>

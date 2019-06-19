@@ -1,0 +1,200 @@
+<nav class="navbar navbar-default" style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar" style="background-color: #710909;"></span>
+        <span class="icon-bar" style="background-color: #710909;"></span>
+        <span class="icon-bar" style="background-color: #710909;"></span>
+      </button>                  
+    </div>
+
+    <div class="collapse navbar-collapse" id="header-navbar">
+      <ul class="nav navbar-nav">
+        <li>
+          <a>            
+            {{#power-select
+              id=chooseBasemap              
+              matchTriggerWidth=matchTriggerWidth                             
+              searchEnabled=false
+              placeholder="Mapa tipo"
+              selected=selectedBasemap
+              options=sortedBasemaps
+              onchange=(action "chooseBasemap")
+              as |basemap|}}
+              {{basemap.name}}
+            {{/power-select}}
+          </a>
+        </li>
+        <li>
+          <a>
+            {{#power-select
+              id=chooseProject
+              matchTriggerWidth=matchTriggerWidth                             
+              searchEnabled=false
+              placeholder="Proyecto"
+              selected=selectedToyProject
+              options=sortedToyProjects
+              onchange=(action "chooseProject")
+              as |project|}}
+              {{project.name}}
+            {{/power-select}}
+          </a>
+        </li>
+        {{#if isAddModeVisible}}
+          <li>
+            <a>
+              {{#power-select
+                id=chooseMode                             
+                searchEnabled=false
+                placeholder="Acción"
+                selected=selectedMode
+                options=sortedModes
+                onchange=(action "chooseMode")
+                as |mode|}}
+                {{mode.name}}
+              {{/power-select}}
+            </a>
+          </li>
+        {{else}}
+          <li>
+            <a>
+              {{#power-select
+                id=chooseModeb                             
+                searchEnabled=false
+                placeholder="Acción"
+                selected=selectedMode
+                options=sortedModes
+                onchange=(action "chooseMode")
+                as |mode|}}
+                {{mode.name}}
+              {{/power-select}}
+            </a>
+          </li>
+        {{/if}}
+        {{#if isSelectVisible}}
+          <li>
+            <a>
+              {{#power-select
+                id=chooseFigure
+                matchTriggerWidth=matchTriggerWidth
+                searchEnabled=false
+                placeholder="Figura" 
+                selected=selectedFigure
+                options=sortedFigures
+                onchange=(action "chooseFigure")
+                as |figure|}}
+                {{figure.name}}
+              {{/power-select}}
+            </a>
+          </li>
+          <li>
+            <a>            
+              {{#power-select
+                id=chooseFeature              
+                searchEnabled=false
+                placeholder="Grupo" 
+                selected=selectedFeature
+                options=sortedFeatures
+                onchange=(action "chooseFeature")
+                as |feature|}}
+                {{feature.name}}
+              {{/power-select}}
+            </a>
+          </li>
+          <li>
+            <a>
+              {{#power-select
+                id=chooseMobil              
+                searchEnabled=false
+                placeholder="Componente" 
+                selected=selectedMobil
+                options=sortedMobils
+                onchange=(action "chooseMobil")
+                as |mobil|}}
+                {{mobil.name}}
+                <!--img src="{{mobil.icon}}" class="icon-flag"> <strong>{{mobil.name}}</strong-->
+              {{/power-select}}
+            </a>
+          </li>
+          {{#if isDocVisible}}
+            <li>
+              <a>
+                {{#power-select
+                  id=chooseDoc          
+                  searchEnabled=false
+                  placeholder="Documento" 
+                  selected=selectedDoc
+                  options=sortedDocs
+                  onchange=(action "chooseDoc")
+                  as |doc|}}
+                  {{doc.docName}}        
+                {{/power-select}}
+              </a>
+            </li>
+          {{/if}}
+          {{#if isDrawVisible}}
+            <li>
+              <a>
+                <div class="form-group">
+                  <label class="sr-only" for="name">name</label>    
+                  {{input value=name id="name"}}  
+                </div>
+              </a>
+            </li>
+            <li>
+              <a>
+                <div class="form-group">
+                  <label class="sr-only" for="reference">reference</label>    
+                  {{input value=reference id="reference"}}  
+                </div>
+              </a>
+            </li>
+            <li>
+              <a>
+                <div class="btn-group">              
+                  <button {{action 'startDraw'}} class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>                              
+                  <button {{action 'pauseDraw'}} class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pause"></span></button>
+                  <button {{action 'saveDraw'}} class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-ok"></span></button>
+                  <button {{action 'quitDraw'}} class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>                                   
+                </div>                
+              </a>
+            </li>        
+          {{/if}}
+        {{/if}}
+        {{#if isShowVisible}}
+          <li>
+            <a>
+              <div class="btn-group">              
+                <button {{action 'callUpdateMap'}} class="btn btn-primary btn-sm">Mostrar</button>                              
+                <button {{action 'clearLayers'}} class="btn btn-primary btn-sm">Quitar</button>                                   
+              </div>
+            </a>
+            <!--button {{action 'showModal' 'doc-modal'}}>Open modal</button-->
+          </li>
+        {{/if}}                                              
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid  -->
+</nav>
+{{#if isShowModal}}
+    {{#my-modal title='Visor de Documentos' onConfirm=(action "closeModalDialog")}} 
+      {{modalMessage}}
+      {{#if isImage}}
+        <img src={{myPath}} class="img-responsive" />
+      {{/if}} 
+      {{#if isPdf}}                        
+        {{js-pdf src=myPath}}
+      {{/if}}
+      {{#if isVideo}}      
+        <video width="600" height="400" controls >
+          <source src={{myPath}} type='video/webm; codecs="vp8, vorbis"'>
+          {{!--ivy-videojs fluid=true src=myPath--}} <!-- Responsive Video -->
+        </video>          
+      {{/if}}
+      {{#if isPower}}
+        {{myPath}}  
+      {{/if}}      
+    {{/my-modal}}
+{{/if}}
+{{body-map model=model selectedBasemap=selectedBasemap selectedProject=selectedProject selectedFigure=selectedFigure selectedFeature=selectedFeature selectedMobil=selectedMobil selectedDocs=selectedDocs selectedDoc=selectedDoc selectedMode=selectedMode updateMap=updateMap clearLayer=clearLayer startDraw=startDraw saveDraw=saveDraw quitDraw=quitDraw name=name geoExtent=geoExtent reference=reference isDocVisible=isDocVisible showModalDialog='showModalDialog' savePoint='savePoint' saveLine='saveLine' savePolygon='savePolygon' saveEllipse='saveEllipse' showModal='showModal' removeModal='removeModal' name=name reference=reference acumJson=acumJson firstJson=firstJson deletePreviousJson=deletePreviousJson}}

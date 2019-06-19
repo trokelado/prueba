@@ -1,0 +1,18 @@
+{{#if updateForm}}
+  <h4>Editar Proyecto</h4>
+  <div>
+    <form>
+      <div class="form-group">
+        <label>Nombre</label>
+        {{input type="text" class="form-control" value=toyproject.name}}
+    </div>
+    <div class="form-group">
+        <label>Activa</label>        
+        {{input type="checkbox" checked=toyproject.isActive}} {{toyproject.isActive}}
+    </div>    
+      <button {{action 'updateToyProject' toyproject}} class="btn btn-warning btn-sm">Guardar</button>
+    </form>
+  </div>
+{{else}}
+  <button {{action 'updateForm'}} class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
+{{/if}}

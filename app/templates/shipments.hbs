@@ -1,0 +1,55 @@
+<h3>Embarque: {{model.shipment.name}} {{model.shipment.type}} {{model.shipment.reference}} {{model.shipment.long}} {{model.shipment.uLong}}</h3> 
+
+{{update-shipment shipment=model.shipment type=model.shipment.type uLong=model.shipment.uLong updateShipment="updateShipment" destroyShipment="destroyShipment"}}
+<h3>Rutas:</h3>
+
+{{new-freight tracks=model.tracks shipment=model.shipment saveFreight="saveFreight"}}
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Activo</th>
+            <th>Referencia</th>
+            <th>Tipo</th>
+            <th>Longitud</th>
+            <th>Unidad</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each model.shipment.tracks as |track|}}
+        <tr>
+            <th>{{track.name}}</th>
+            <td>{{track.isActive}}</td>           
+            <td>{{track.reference}}</td>
+            <td>{{track.type}}</td>
+            <td>{{track.long}}</td>
+            <td>{{track.uLong}}</td>               
+            {{!--freight-tile freight=freight  destroyFreight="destroyFreight"--}}        
+        </tr>
+        {{/each}}
+        </tbody>
+  </table> 
+
+  {{!--new-freight freights=model.freights tracks=model.tracks shipment=model.shipment saveFreight="saveFreight"--}}
+    <!--table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Activo</th>
+            <th>Referencia</th>
+            <th>Inicio</th>
+            <th>Acción</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each model.shipment.freights as |freight|}}
+        <tr>
+            <th>{{freight.name}}</th>
+            <td>{{freight.isActive}}</td>
+            <td>{{freight.track.name}}</td>            
+            <td>{{freight.track.reference}}</td>            
+            {{freight-tile freight=freight updateFreight="updateFreight" destroyFreight="destroyFreight"}}        
+        </tr>
+        {{/each}}
+        </tbody>
+  </table-->

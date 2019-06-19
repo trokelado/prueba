@@ -1,0 +1,9 @@
+<button {{action 'delete' feature}} class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>
+<br>
+<h2>Componente</h2>
+<ul>
+  {{#each sortedMobils as |mobil|}}
+    {{mobil-tile mobil=mobil figure=figure isForSale=isForSale destroyMobil="destroyMobil" updateMobil="updateMobil" savePoint="savePoint"}}    
+  {{/each}}
+</ul>
+

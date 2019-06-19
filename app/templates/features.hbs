@@ -1,0 +1,7 @@
+<h2>Grupo: {{model.feature.name}}... Activo: {{model.feature.isActive}} </h2>
+
+{{update-feature feature=model.feature figures=model.figures figure=model.feature.figure updateFeature="updateFeature"}}
+
+{{feature-detail feature=model.feature figure=model.feature.figure isForSale=model.feature.onsale destroyFeature="destroyFeature" destroyMobil="destroyMobil" updateMobil="updateMobil" savePoint="savePoint"}}
+
+{{new-mobil feature=model.feature figure=model.feature.figure isForSale=model.feature.onsale saveMobil="saveMobil"}}

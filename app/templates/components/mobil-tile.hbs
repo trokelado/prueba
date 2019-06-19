@@ -1,0 +1,14 @@
+<div class='col-md-12'>
+	<div class='col-md-4'>    		        
+	<li>
+		<h3>{{mobil.name}}</h3>
+	</li>			        
+	</div>
+	<div class='col-md-4'>    		        
+		<img src={{mobil.imagePath}} alt="Logo" width="30%" height="30%"/>			        
+	</div>
+	<div class='col-md-4'>    		        
+		<button {{action 'delete' mobil}} class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>
+		{{update-mobil mobil=mobil figure=figure isForSale=isForSale updateMobil="updateMobil"}}			        
+	</div>
+</div>

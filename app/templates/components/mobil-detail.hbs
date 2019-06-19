@@ -1,0 +1,107 @@
+<h3>{{figure}}s</h3>
+{{#if isPoint}}   
+    {{#each mobil.points as |point|}}
+      {{point-tile point=point updatePoint="updatePoint" destroyPoint="destroyPoint" saveDoc="saveDoc" updateDoc="updateDoc" destroyDoc="destroyDoc"}}    
+    {{/each}}  
+{{/if}}
+{{#if isLine}}             
+    <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Activo</th>
+        <th>Referencia</th>
+        <th>Color</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+    {{#each mobil.lines as |line|}}
+      <tr>
+        <th>{{line.name}}</th>
+        <td>{{line.isActive}}</td>
+        <td>{{line.reference}}</td>
+        <td>{{line.color}}</td>
+        {{line-tile line=line color=line.color uPerimeter=line.uPerimeter updateLine="updateLine" destroyLine="destroyLine"}}    
+      </tr>
+    {{/each}}
+    </tbody>
+  </table>      
+{{/if}}
+{{#if isPolygon}}
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Activo</th>
+        <th>Referencia</th>
+        <th>Color</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+    {{#each mobil.polygons as |polygon|}}
+      <tr>
+        <th>{{polygon.name}}</th>
+        <td>{{polygon.isActive}}</td>
+        <td>{{polygon.reference}}</td>
+        <td>{{polygon.color}}</td>
+        {{polygon-tile polygon=polygon color=polygon.color uArea=polygon.uArea uPerimeter=polygon.uPerimeter updatePolygon="updatePolygon" destroyPolygon="destroyPolygon"}}    
+      </tr>
+    {{/each}}
+    </tbody>
+  </table>  
+{{/if}}
+{{#if isEllipse}}      
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Activo</th>
+        <th>Referencia</th>
+        <th>Color</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+    {{#each mobil.ellipses as |ellipse|}}
+      <tr>
+        <th>{{ellipse.name}}</th>
+        <td>{{ellipse.isActive}}</td>
+        <td>{{ellipse.reference}}</td>
+        <td>{{ellipse.color}}</td>
+        {{ellipse-tile ellipse=ellipse color=ellipse.color uArea=ellipse.uArea uPerimeter=ellipse.uPerimeter updateEllipse="updateEllipse" destroyEllipse="destroyEllipse"}}    
+      </tr>
+    {{/each}}
+    </tbody>
+  </table>  
+{{/if}}
+{{!--#if isCube}} 
+    {{#each mobil.rectangles as |rectangle|}}
+      {{rectangle-tile rectangle=rectangle color=rectangle.color uArea=rectangle.uArea uPerimeter=rectangle.uPerimeter updateCube="updateCube" destroyCube="destroyCube"}}    
+    {{/each}}    
+{{/if--}}
+{{#if isCube}}
+  <table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Activo</th>
+      <th>Referencia</th>
+      <th>Color</th>
+      <th>Acción</th>
+    </tr>
+  </thead>
+  <tbody>
+  {{#each mobil.rectangles as |rectangle|}}
+    <tr>
+      <th>{{rectangle.name}}</th>
+      <td>{{rectangle.isActive}}</td>
+      <td>{{rectangle.reference}}</td>
+      <td>{{rectangle.color}}</td>
+      <td>{{rectangle-tile rectangle=rectangle color=rectangle.color uArea=rectangle.uArea uPerimeter=rectangle.uPerimeter updateCube="updateCube" destroyCube="destroyCube"}}</td>
+    </tr>
+  {{/each}}
+  </tbody>
+</table>
+{{/if}}

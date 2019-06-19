@@ -1,0 +1,177 @@
+<nav class="navbar navbar-default" style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar" style="background-color: #710909;"></span>
+        <span class="icon-bar" style="background-color: #710909;"></span>
+        <span class="icon-bar" style="background-color: #710909;"></span>
+      </button>                  
+    </div>
+
+    <div class="collapse navbar-collapse" id="header-navbar">
+      <ul class="nav navbar-nav">
+        <li>
+          <a>            
+            {{#power-select
+              id=chooseBasemap              
+              matchTriggerWidth=matchTriggerWidth                             
+              searchEnabled=false
+              placeholder="Mapa tipo"
+              selected=selectedBasemap
+              options=sortedBasemaps
+              onchange=(action "chooseBasemap")
+              as |basemap|}}
+              {{basemap.name}}
+            {{/power-select}}
+          </a>
+        </li>
+        <li>
+          <a>
+            {{#power-select
+              id=chooseProject
+              matchTriggerWidth=matchTriggerWidth                             
+              searchEnabled=false
+              placeholder="Proyecto"
+              selected=selectedProject
+              options=sortedProjects
+              onchange=(action "chooseProject")
+              as |project|}}
+              {{project.name}}
+            {{/power-select}}
+          </a>
+        </li>
+        <li>
+          <a>
+            {{#power-select
+              id=chooseMode                             
+              searchEnabled=false
+              placeholder="Acción"
+              selected=selectedMode
+              options=sortedModes
+              onchange=(action "chooseMode")
+              as |mode|}}
+              {{mode.name}}
+            {{/power-select}}
+          </a>
+        </li>
+        {{#if isSelectVisible}}
+          <li>
+            <a>
+              {{#power-select
+                id=chooseFigure
+                matchTriggerWidth=matchTriggerWidth
+                searchEnabled=false
+                placeholder="Figura" 
+                selected=selectedFigure
+                options=sortedFigures
+                onchange=(action "chooseFigure")
+                as |figure|}}
+                {{figure.name}}
+              {{/power-select}}
+            </a>
+          </li>
+          <li>
+            <a>            
+              {{#power-select
+                id=chooseFeature              
+                searchEnabled=false
+                placeholder="Grupo" 
+                selected=selectedFeature
+                options=sortedFeatures
+                onchange=(action "chooseFeature")
+                as |feature|}}
+                {{feature.name}}
+              {{/power-select}}
+            </a>
+          </li>
+          <li>
+            <a>
+              {{#power-select
+                id=chooseMobil              
+                searchEnabled=false
+                placeholder="Componente" 
+                selected=selectedMobil
+                options=sortedMobils
+                onchange=(action "chooseMobil")
+                as |mobil|}}
+                {{mobil.name}}
+                <!--img src="{{mobil.icon}}" class="icon-flag"> <strong>{{mobil.name}}</strong-->
+              {{/power-select}}
+            </a>
+          </li>
+          {{#if isDocVisible}}
+            <li>
+              <a>
+                {{#power-select
+                  id=chooseDoc          
+                  searchEnabled=false
+                  placeholder="Documento" 
+                  selected=selectedDoc
+                  options=sortedDocs
+                  onchange=(action "chooseDoc")
+                  as |doc|}}
+                  {{doc.name}}        
+                {{/power-select}}
+              </a>
+            </li>
+          {{/if}}
+          {{#if isDrawVisible}}
+            <li>
+              <a>
+                <div class="form-group">
+                  <label class="sr-only" for="name">name</label>    
+                  {{input value=name id="name"}}  
+                </div>
+              </a>
+            </li>
+            <li>
+              <a>
+                <div class="form-group">
+                  <label class="sr-only" for="reference">reference</label>    
+                  {{input value=reference id="reference"}}  
+                </div>
+              </a>
+            </li>
+            <li>
+              <a>
+                <button {{action 'drawFigures'}} class="btn btn-primary btn-xs">Draw</button>
+              </a>
+            </li>        
+          {{/if}}
+        {{/if}}
+        {{#if isShowVisible}}
+          <li>
+            <a>
+              <div class="btn-group">              
+                <button {{action 'callUpdateMap'}} class="btn btn-primary btn-sm">Mostrar</button>                              
+                <button {{action 'clearLayers'}} class="btn btn-primary btn-sm">Quitar</button>              
+              <!--button {{action 'showExtent'}} class="btn btn-primary btn-xs">Extent</-->      
+              </div>
+            </a>
+            <!--button {{action 'showModal' 'doc-modal'}}>Open modal</button-->
+          </li>
+        {{/if}}                                              
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+{{#if isShowModal}}
+    {{#my-modal title='Visor de Documentos' onConfirm=(action "closeModalDialog")}} 
+      {{modalMessage}}
+      {{#if isImage}}
+        <img src={{myPath}} class="img-responsive" />
+      {{/if}} 
+      {{#if isPdf}}                
+        {{!--js-pdf src="https://bitcoin.org/bitcoin.pdf"--}}
+        {{js-pdf src=myPath}}
+      {{/if}}
+      {{#if isVideo}}
+        {{ivy-videojs fluid=true src=myPath}}  
+      {{/if}}
+      {{#if isPower}}
+        {{myPath}}  
+      {{/if}}      
+    {{/my-modal}}
+{{/if}}
+{{display-map model=model savePoint='savePoint' showModal='showModal' removeModal='removeModal'}}

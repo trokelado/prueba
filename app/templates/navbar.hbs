@@ -1,0 +1,39 @@
+<nav class="navbar navbar-default" style="background-color: #e3f2fd;">
+<!--nav class="navbar navbar-inverse"-->  
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar" style="background-color: #710909;"></span>
+        <span class="icon-bar" style="background-color: #710909;"></span>
+        <span class="icon-bar" style="background-color: #710909;"></span>
+      </button>      
+        {{!--#link-to 'index' class="navbar-brand"}}WebShore{{/link-to--}}        
+        <a class="d-inline-block">              
+          <img src="/assets/logos/GrupoG.png" width="52" height="52" alt="">
+          {{#link-to 'index' class="navbar-brand"}}<strong>WebShore</strong>{{/link-to}}                                          
+        </a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav">            
+            {{#link-to 'map' tagName="li" }}<a href="">SIG</a>{{/link-to}}
+            {{#link-to 'mision' tagName="li"}}<a href="">Misión</a>{{/link-to}}
+            {{#link-to 'service' tagName="li"}}<a href="">Servicios</a>{{/link-to}}            
+            {{#link-to 'about' tagName="li"}}<a href="">Nosotros</a>{{/link-to}}
+            {{#link-to 'contact' tagName="li"}}<a href="">Contacto</a>{{/link-to}}
+            {{#link-to 'inprojects' tagName="li"}}<a href="">Componentes</a>{{/link-to}}
+            {{#link-to 'inproyectos' tagName="li"}}<a href="">Figuras</a>{{/link-to}}
+            {{#link-to 'intracks' tagName="li"}}<a href="">Config</a>{{/link-to}}
+            {{#link-to 'inpro' tagName="li"}}<a href="">Sigue</a>{{/link-to}}
+            {{#link-to 'insales' tagName="li"}}<a href="">Ventas</a>{{/link-to}}            
+            <li>
+                  <a href="https://earth.nullschool.net/#current/wind/surface/level/orthographic=-96.12,26.92,996" target="_blank">              
+                    Vientos
+                  </a>
+            </li>
+            {{#link-to 'login' tagName="li"}}<a href="">Login</a>{{/link-to}}
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

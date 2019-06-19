@@ -1,0 +1,28 @@
+<h3>Ruta: {{model.track.name}} {{model.track.type}} {{model.track.reference}} {{model.track.long}} {{model.track.uLong}}</h3> 
+
+{{track-tile track=model.track type=track.type uLong=track.uLong updateTrack="updateTrack" destroyTrack="destroyTrack"}}
+<h3>Trayectorias:</h3>
+
+{{new-link link=model.link saveLink="saveLink"}}
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Activo</th>
+            <th>Referencia</th>
+            <th>Color</th>
+            <th>Acción</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each model.track.links as |link|}}
+        <tr>
+            <th>{{link.name}}</th>
+            <td>{{link.isActive}}</td>
+            <td>{{link.reference}}</td>
+            <td>{{link.color}}</td>
+            {{link-tile link=link color=link.color uLong=link.uLong updateLink="updateLink" destroyLink="destroyLink"}}        
+        </tr>
+        {{/each}}
+        </tbody>
+  </table> 

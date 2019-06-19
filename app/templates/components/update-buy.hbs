@@ -1,0 +1,142 @@
+{{#if updateBuyForm}}
+  <h4>Editar Compra</h4>  
+  <div>
+    <form>
+    {{#if rolIsComprador}}    
+        {{#if buyerIsFreeze}}
+            <div class="form-group">
+                <label>Nombre</label>
+                {{input type="text" class="form-control" value=buy.name disabled=true}}
+            </div>
+            <div class="form-group">
+                <label>Fecha</label>
+                {{input type="date" class="form-control" value=buy.dateIn disabled=true}}
+            </div>
+            <div class="form-group">
+                <label>Estatus</label>
+                {{input type="text" class="form-control" value=buy.status disabled=true}}
+            </div>                                     
+            <div class="form-group">
+                <label>Instrucciones</label>
+                {{textarea class="form-control" cols="80" rows="4" value=buy.instruct disabled=true}}
+            </div>    
+            <div class="form-group">
+                <label>Comentarios del servicio</label>
+                {{textarea class="form-control" cols="80" rows="4" value=buy.publishSale}}
+            </div>
+            <div class="form-group">
+                <label>Evaluación del proveedor</label>
+                {{input type="text" class="form-control" value=buy.evalSale}}
+            </div>
+            <div class="form-group">
+                <label>Volumen</label>
+                {{input type="text" class="form-control" value=buy.volume disabled=true}}
+            </div> 
+            <div class="form-group">
+                <label>Total</label>
+                {{input type="text" class="form-control" value=buy.total disabled=true disabled=true}}
+            </div>
+        {{else}}
+            <div class="form-group">
+                <label>Nombre</label>
+                {{input type="text" class="form-control" value=buy.name}}
+            </div>
+            <div class="form-group">
+                <label>Fecha</label>
+                {{input type="date" class="form-control" value=buy.dateIn}}
+            </div>                      
+            <div class="form-group">
+                <label>Estatus</label>
+                {{!--input type="text" class="form-control" value=buy.status--}}
+                <!--select onchange={{action "setStatusSelection" value="target.value"}}>
+                        <option value="Pendiente">Pendiente</option>                
+                        <option value="Cancelada">Cancelada</option>                        
+                    </select-->        
+                <select onchange={{action "chooseStatus" value="target.value"}}>
+                    {{#each buyerStatues as |item|}}
+                        <option value={{item}} selected={{is-equal buy.status item}}>{{item}}</option>
+                    {{/each}}
+                </select> 
+            </div>
+            <div class="form-group">
+                <label>Instrucciones</label>
+                {{textarea class="form-control" cols="80" rows="4" value=buy.instruct}}
+            </div>    
+            <div class="form-group">
+                <label>Comentarios del servicio</label>
+                {{textarea class="form-control" cols="80" rows="4" value=buy.publishSale disabled=true}}
+            </div>
+            <div class="form-group">
+                <label>Evaluación del proveedor</label>
+                {{input type="text" class="form-control" value=buy.evalSale disabled=true}}
+            </div>
+            <div class="form-group">
+                <label>Volumen</label>
+                {{input type="text" class="form-control" value=buy.volume}}
+            </div> 
+            <div class="form-group">
+                <label>Total</label>
+                {{input type="text" class="form-control" value=buy.total disabled=true}}
+            </div>
+        {{/if}}
+    {{/if}}
+    
+    {{#if rolIsVendedor}}        
+            <div class="form-group">
+                <label>Nombre</label>
+                {{input type="text" class="form-control" value=buy.name disabled=true}}
+            </div>
+            <div class="form-group">
+                <label>Fecha</label>
+                {{input type="date" class="form-control" value=buy.dateIn disabled=true}}
+            </div>
+            {{#if salerIsFreeze}}
+                <div class="form-group">
+                    <label>Estatus</label>
+                    {{input type="text" class="form-control" value=buy.status disabled=true}}
+                </div>
+            {{else}}                                
+                <div class="form-group">
+                    <label>Estatus</label>
+                    {{!--input type="text" class="form-control" value=buy.status--}}
+                    <!--select onchange={{action "setStatusSelection" value="target.value"}}>
+                        <option value="Pendiente">Pendiente</option>                
+                        <option value="Aprobada">Aprobada</option>
+                        <option value="Rechazada">Rechazada</option>
+                    </select-->        
+                    <select onchange={{action "chooseStatus" value="target.value"}}>
+                        {{#each salerStatues as |item|}}
+                            <option value={{item}} selected={{is-equal buy.status item}}>{{item}}</option>
+                        {{/each}}
+                    </select> 
+                </div>
+            {{/if}}                    
+            <div class="form-group">
+                <label>Instrucciones</label>
+                {{textarea class="form-control" cols="80" rows="4" value=buy.instruct disabled=true}}
+            </div>
+            <div class="form-group">
+                <label>Comentarios hacia el cliente</label>
+                {{textarea class="form-control" cols="80" rows="4" value=buy.publishBuy}}
+            </div>
+            <div class="form-group">
+                <label>Evaluación del cliente</label>
+                {{input type="text" class="form-control" value=buy.evalBuy}}
+            </div>
+            <div class="form-group">
+                <label>Volumen</label>
+                {{input type="text" class="form-control" value=buy.volume disabled=true}}
+            </div> 
+            <div class="form-group">
+                <label>Total</label>
+                {{input type="text" class="form-control" value=buy.total disabled=true}}
+            </div>        
+    {{/if}}        
+      <button {{action 'updateBuy' buy }} class="btn btn-warning btn-sm">Guardar</button>
+    </form>
+  </div>  
+{{else}}
+<div>
+  <button {{action 'updateBuyForm'}} class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
+</div>
+{{/if}}

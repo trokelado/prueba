@@ -1,0 +1,7 @@
+{
+  "name": "webshore",
+  "dependencies": {
+    "pdfjs-dist": "1.7.331",
+    "video.js": "~5.12"
+  }
+}

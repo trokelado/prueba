@@ -1,0 +1,17 @@
+<h3> Seuimiento </h3>
+{{#each filteredToys as |toy|}}
+    <h4><li>{{toy.rol}} : {{toy.name}}</li></h4>
+{{/each}}
+
+{{#if showMoney}}  
+    <div>
+        <form>
+            <button {{action 'gotoTracks'}} class="btn btn-primary">Rutas</button>                    
+            <button {{action 'gotoShipments'}} class="btn btn-primary">Embarques</button>            
+            <button {{action 'gotoDelays'}} class="btn btn-primary">Demoras</button>
+            <button {{action 'gotoReasons'}} class="btn btn-primary">Causas</button>            
+        </form>
+    </div>
+{{else}}  
+    Sus privilegios no le permiten visualizar esta información. consulte al administrador !
+{{/if}}

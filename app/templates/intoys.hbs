@@ -1,0 +1,16 @@
+<h3>Participantes</h3>
+{{#each filteredToys as |toy|}}
+    <h4><li>{{toy.rol}} : {{toy.name}}</li></h4>
+{{/each}}
+
+{{#if showMoney}}
+  <ul>
+    {{#each sortedToys as |eltoy|}}
+      {{toy-tyle toy=eltoy}}
+    {{/each}}
+  </ul>
+{{else}}  
+    Sus privilegios no le permiten visualizar la información operativa. consulte al administrador !
+{{/if}}
+
+

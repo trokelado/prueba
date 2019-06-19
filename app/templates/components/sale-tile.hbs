@@ -1,0 +1,33 @@
+<div class='col-md-8'>  
+    <h4> {{sale.toy.name}} {{sale.name}} : {{sale.dateIn}} Estatus: {{sale.status}} Volúmen: {{sale.volume}} {{sale.unit}} Precio U.: ${{sale.price}} Saldo: {{sale.balance}} {{sale.unit}}</h4>  
+</div>
+{{#if rolIsVendedor}}
+  <div class='col-md-4'>
+    <!--button {{action 'delete' sale}} class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button-->
+    <p>{{update-sale sale=sale rol=rol fbid=fbid updateSale="updateSale"}}</p>
+  </div>
+  <div class='col-md-12'>
+    <h4>Compras</h4>          
+    {{#each sale.buys as |buy|}}
+      {{buy-tale buy=buy rol=rol fbid=fbid updateBuy="updateBuy"}}    
+    {{/each}}      
+  </div>
+{{/if}}
+{{#unless rolIsVendedor}}  
+  <div class='col-md-4'>
+    <h4>Compras</h4>
+    {{new-buy sale=sale rol=rol fbid=fbid saveBuy="saveBuy"}}
+  </div>
+  <div class='col-md-12'>              
+    {{#each sale.buys as |buy|}}                                    
+        {{buy-tale buy=buy rol=rol id=id fbid=fbid updateBuy="updateBuy" destroyBuy="destroyBuy"}}              
+    {{/each}}        
+  </div>
+{{/unless}}
+
+  
+
+
+
+  
+

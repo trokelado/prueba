@@ -1,0 +1,39 @@
+{{#if updatePointForm}}
+  <h4>Editar Punto</h4>
+  <div>
+    <form>
+      <div class="form-group">
+        <label>Nombre</label>
+        {{input type="text" class="form-control" value=point.name}}
+    </div>
+    <div class="form-group">
+        <label>Activa</label>        
+        {{input type="checkbox" checked=point.isActive}} {{point.isActive}}
+    </div>
+    <div class="form-group">
+        <label>Referencia</label>
+        {{input type="text" class="form-control" value=point.reference}}
+    </div>
+    <div class="form-group">
+        <label>Icono</label>
+        {{input type="text" class="form-control" value=point.icon}}
+    </div>
+    <div class="form-group">
+        <label>Referencia espacial</label>
+        {{input type="text" class="form-control" value=point.spRef}}
+    </div>
+    <div class="form-group">
+        <label>Coordenada X</label>
+        {{input type="text" class="form-control" value=point.X}}
+    </div>
+    <div class="form-group">
+        <label>Coordenada Y</label>
+        {{input type="text" class="form-control" value=point.Y}}
+    </div>
+      <button {{action 'updatePoint' point}} class="btn btn-warning btn-sm">Guardar</button>
+    </form>
+  </div>
+{{else}}
+  <button {{action 'updatePointForm'}} class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
+{{/if}}
+

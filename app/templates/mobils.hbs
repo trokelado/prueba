@@ -1,0 +1,19 @@
+<h3>Grupo: {{model.feature.name}}... Componente: {{model.name}}<img src={{model.imagePath}} alt="Logo" width="10%" height="10%"/></h3>        
+
+{{#if isPoint}}
+    {{new-point mobil=model savePoint="savePoint"}}
+{{/if}}
+{{#if isLine}}
+    {{new-line mobil=model saveLine="saveLine"}}
+{{/if}}
+{{#if isPolygon}}
+    {{new-polygon mobil=model savePolygon="savePolygon"}}
+{{/if}}
+{{#if isEllipse}}
+    {{new-ellipse mobil=model saveEllipse="saveEllipse"}}
+{{/if}}
+{{#if isCube}}
+    {{new-cube mobil=model saveCube="saveCube"}}
+{{/if}}
+
+{{mobil-detail mobil=model figure=model.feature.figure updatePoint="updatePoint" destroyPoint="destroyPoint" updatePolygon="updatePolygon" destroyPolygon="destroyPolygon" updateLine="updateLine" destroyLine="destroyLine" updateEllipse="updateEllipse" destroyEllipse="destroyEllipse" updateCube="updateCube" destroyCube="destroyCube" saveDoc="saveDoc" updateDoc="updateDoc" destroyDoc="destroyDoc"}}
